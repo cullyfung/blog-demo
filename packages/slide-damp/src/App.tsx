@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useRef } from 'react';
+import Card from './components/Card';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const scrollBoxRef = useRef<HTMLDivElement>(null);
+
+  const resizeBody = () => {
+    const height = scrollBoxRef.current?.offsetHeight;
+    document.body.style.height = `${height}px`;
+  };
+
+  const scroll = () => {
+    scrollBoxRef.current!.style.transform = `translateY(${-window.scrollY}px)`;
+  };
+
+  useEffect(() => {
+    window.addEventListener('load', resizeBody);
+    window.addEventListener('resize', resizeBody);
+    window.addEventListener('scroll', scroll);
+
+    return () => {
+      window.removeEventListener('load', resizeBody);
+      window.removeEventListener('resize', resizeBody);
+      window.removeEventListener('scroll', scroll);
+    };
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div
+      ref={scrollBoxRef}
+      className="relative flex flex-col items-center shrink-0 transition-ease w-full"
+    >
+      <Card
+        title="title1"
+        image="https://w.wallhaven.cc/full/vq/wallhaven-vq27p5.jpg"
+      />
+      <Card
+        title="title2"
+        image="https://w.wallhaven.cc/full/l8/wallhaven-l8gxqr.png"
+      />
+      <Card
+        title="title3"
+        image="https://w.wallhaven.cc/full/yx/wallhaven-yxkzjg.jpg"
+      />
+      <Card
+        title="title4"
+        image="https://w.wallhaven.cc/full/zy/wallhaven-zyv1xw.png"
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
