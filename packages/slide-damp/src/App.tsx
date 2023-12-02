@@ -28,7 +28,7 @@ function App() {
   return (
     <div
       ref={scrollBoxRef}
-      className="relative flex flex-col items-center shrink-0 transition-ease w-full"
+      className="relative flex flex-col items-center shrink-0 transition w-full"
     >
       <Card
         title="title1"
