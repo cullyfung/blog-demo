@@ -21,6 +21,10 @@ function App() {
     animatedItems.forEach((item) => {
       observer.observe(item);
     });
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
