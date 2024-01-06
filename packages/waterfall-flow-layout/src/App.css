@@ -1,0 +1,25 @@
+:root {
+  --item-width: 0px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.item {
+  position: absolute;
+  width: var(--item-width);
+  top: 0;
+  left: 0;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.item img {
+  width: 100%;
+  object-fit: cover;
+}
