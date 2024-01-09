@@ -92,34 +92,37 @@ const moveRight = () => {
 </script>
 
 <template>
-  <div class="carousel">
-    <button
-      class="left-arrow"
+  <div class="relative w-640px my100px mx-auto font-mono">
+    <div
+      role="button"
+      class="w10 h10 hover:bg-blue-500 cursor-pointer absolute top-1/2 -left-70px -translate-y-1/2 leading-50px text-blue-400 i-ant-design:left-circle-filled"
       @click="moveLeft"
-    >
-      &lt;
-    </button>
-    <button
-      class="right-arrow"
+    ></div>
+
+    <div
+      role="button"
+      class="w10 h10 hover:bg-blue-500 cursor-pointer absolute top-1/2 left-660px -translate-y-1/2 leading-50px text-blue-400 i-ant-design:right-circle-filled"
       @click="moveRight"
-    >
-      &gt;
-    </button>
-    <div class="carousel-container">
+    ></div>
+
+    <div class="w640px overflow-hidden my0 mx-auto">
       <div
-        class="carousel-wrapper"
+        class="whitespace-nowrap"
         ref="carouselWrapperRef"
       >
         <div
           ref="carouselItemRef"
           v-for="item in slides"
           :key="item.id"
-          class="carousel-item"
+          class="inline-block w200px h200px mr20px rounded-md overflow-hidden relative"
         >
-          <h2 class="title">{{ item.title }}</h2>
+          <h2 class="absolute bottom-0 left-0 right-0 text-center text-blue-500">
+            {{ item.title }}
+          </h2>
           <img
             :src="item.image"
             alt="image"
+            class="block w-full h-full object-cover"
           />
         </div>
       </div>
